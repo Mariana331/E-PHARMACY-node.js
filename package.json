@@ -1,0 +1,38 @@
+{
+  "name": "e-pharmacy-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mariana331/E-PHARMACY-node.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mariana331/E-PHARMACY-node.js/issues"
+  },
+  "homepage": "https://github.com/Mariana331/E-PHARMACY-node.js#readme",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "http-errors": "^2.0.1",
+    "joi": "^18.0.2",
+    "mongoose": "^9.2.1",
+    "nodemon": "^3.1.14",
+    "pino-http": "^11.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.1",
+    "globals": "^17.3.0",
+    "pino-pretty": "^13.1.3"
+  }
+}
