@@ -1,9 +1,9 @@
 import { UsersCollection } from '../db/models/user.js';
 import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
-import randomBytes from 'crypto';
+import { randomBytes } from 'node:crypto';
 import { FIFTEEN_MINUTES, ONE_DAY } from '../constants/index.js';
-import { sessionCollection } from '../db/models/session.js';
+import { SessionsCollection } from '../db/models/session.js';
 
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
@@ -28,21 +28,21 @@ export const loginUser = async (payload) => {
     throw createHttpError(401, 'Unauthorized');
   }
 
-  await sessionCollection.deleteOne({ userId: user._id });
+  await SessionsCollection.deleteOne({ userId: user._id });
   const accessToken = randomBytes(30).toString('base64');
   const refreshToken = randomBytes(30).toString('base64');
 
-  return await sessionCollection.create({
+  return await SessionsCollection.create({
     userId: user._id,
     accessToken,
     refreshToken,
     accessTokenValidUntil: new Date(Date.now() + FIFTEEN_MINUTES),
-    refreshTokenValidUntil: Date(Date.now() + ONE_DAY),
+    refreshTokenValidUntil: new Date(Date.now() + ONE_DAY),
   });
 };
 
-export const logoutUser = async (sessionId) => {
-  await sessionCollection.deleteOne({ _id: sessionId });
+export const logoutUser = async (refreshToken) => {
+  await SessionsCollection.deleteOne({ refreshToken });
 };
 
 const createSession = () => {
@@ -58,7 +58,7 @@ const createSession = () => {
 };
 
 export const refreshUserSession = async ({ sessionId, refreshToken }) => {
-  const session = await sessionCollection.findOne({
+  const session = await SessionsCollection.findOne({
     _id: sessionId,
     refreshToken,
   });
@@ -74,11 +74,19 @@ export const refreshUserSession = async ({ sessionId, refreshToken }) => {
     throw createHttpError(401, 'Session token expired!');
   }
 
-  const newSession = await sessionCollection.create({
+  const newSession = await SessionsCollection.create({
     userId: session.userId,
     ...createSession(),
   });
 
-  await sessionCollection.deleteOne({ _id: sessionId });
+  await SessionsCollection.deleteOne({ _id: sessionId });
   return newSession;
+};
+
+export const infoUser = async (userId) => {
+  const user = await UsersCollection.findById(userId).select('name email');
+  if (!user) {
+    throw createHttpError(404, 'User is not found!');
+  }
+  return user;
 };

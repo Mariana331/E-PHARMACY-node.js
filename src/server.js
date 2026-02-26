@@ -3,6 +3,7 @@ import pino from 'pino-http';
 import cors from 'cors';
 import { getEnvVar } from './utils/getEnvVar.js';
 import authRouters from './routes/auth.js';
+import shopRouters from './routes/shop.js';
 import errorHandler from './middlewares/errorHandler.js';
 import notFoundHandler from './middlewares/notFoundHandler.js';
 import cookieParser from 'cookie-parser';
@@ -18,7 +19,8 @@ export const startServer = () => {
   app.use(pino({ transport: { target: 'pino-pretty' } }));
   app.use(cors());
 
-  app.use(authRouters);
+  app.use('/api/user', authRouters);
+  app.use('/api/user/shop', shopRouters);
 
   app.use(notFoundHandler);
   app.use(errorHandler);
