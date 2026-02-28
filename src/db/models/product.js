@@ -1,0 +1,30 @@
+import { model, Schema } from 'mongoose';
+
+const productSchema = new Schema(
+  {
+    shopId: {
+      type: Schema.Types.ObjectId,
+      ref: 'shop',
+      required: true,
+    },
+    photo: { type: String, required: false },
+    name: { type: String, required: true },
+    suppliers: {
+      type: String,
+      enum: ['Square', 'Beximco', 'Uniliver', 'ACI', 'Acme'],
+      default: 'ACI',
+      required: true,
+    },
+    stock: { type: Number, required: true },
+    price: { type: Number, required: true },
+    category: {
+      type: String,
+      enum: ['Hand', 'Head', 'Medicine', 'Leg', 'Dental Care', 'Heart'],
+      default: 'Medicine',
+      required: true,
+    },
+  },
+  { timestamps: true, versionKey: false },
+);
+
+export const ProductsCollection = model('product', productSchema);
