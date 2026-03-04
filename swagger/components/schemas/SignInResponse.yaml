@@ -1,0 +1,11 @@
+components:
+  schemas:
+    User:
+type: object
+required:
+  - accessToken
+properties:
+  accessToken:
+    type: string
+    description: User accessToken
+    example: TYEJ0iVVw81X8Bn0hX/nykwWhcYQ1EsjAHR

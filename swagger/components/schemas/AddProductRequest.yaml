@@ -1,0 +1,59 @@
+components:
+  schemas:
+    Product:
+type: object
+required:
+  - shopId
+  - id
+  - photo
+  - name
+  - suppliers
+  - stock
+  - price
+  - category
+  - createdAt
+  - updatedAt
+
+properties:
+  shopId:
+    type: string
+    description: Shop id
+    example: 68efd834f1781f960b1e7a6c
+  id:
+    type: number
+    description: Product number
+    example: 12
+  photo:
+    type: string
+    description: Product photo
+    example: https://i.ibb.co/X330FTj/shop-4-10-1000x1000-min.jpg
+  name:
+    type: string
+    description: Product name
+    example: Shampoo
+  suppliers:
+    type: string
+    description: Product supplier
+    enum: ['Square', 'Beximco', 'Uniliver', 'ACI', 'Acme']
+    example: Square
+  stock:
+    type: number
+    description: Product stock
+    example: 15
+  price:
+    type: number
+    description: Product price
+    example: 45.66
+  category:
+    type: string
+    description: Product category
+    enum: ['Hand', 'Head', 'Medicine', 'Leg', 'Dental Care', 'Heart']
+    example: Hand
+  createdAt:
+    type: string
+    format: date-time
+    example: 2025-10-08T18:21:10.157+00:00
+  updatedAt:
+    type: string
+    format: date-time
+    example: 2025-10-08T18:21:10.157+00:00

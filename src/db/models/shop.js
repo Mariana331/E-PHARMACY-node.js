@@ -5,7 +5,7 @@ const shopSchema = new Schema(
     name: { type: String, required: true },
     owner: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    logo: { type: String },
+    logo: { type: String, required: true },
   },
   { timestamps: true, versionKey: false },
 );

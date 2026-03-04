@@ -1,0 +1,46 @@
+components:
+  schemas:
+
+    User:
+type: object
+required:
+  - name
+  - email
+  - phone
+  - _id
+  - password
+  - createdAt
+  - updatedAt
+properties:
+  - name:
+    type: string
+    description: User name
+    example: John
+  -email:
+    type: string
+    description: User email
+    example: john@gmail.com
+  phone:
+    type: string
+    description: User phone
+    example: +380987766555
+  _id:
+    type: string
+    description: User id
+    example: 68efd834f1781f960b1e7a6c
+  password:
+    type: string
+    description: User password
+    example: 68efd87778
+  createdAt:
+    type: string
+    format: date-time
+    example: 2025-10-08T18:21:10.157+00:00
+  updatedAt:
+    type: string
+    format: date-time
+    example: 2025-10-08T18:21:10.157+00:00
+    
+ 
+
+

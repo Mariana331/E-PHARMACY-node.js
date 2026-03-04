@@ -1,0 +1,26 @@
+components:
+  schemas:
+    Shop:
+type: object
+required:
+  - name
+  - owner
+  - email
+  - logo
+properties:
+  name:
+    type: string
+    description: Shop name
+    example: Goods
+  owner:
+    type: string
+    description: Owner name
+    example: John
+  email:
+    type: string
+    description: Shop email
+    example: goods@gmail.com
+  logo:
+    type: string
+    description: Shop logo
+    example: logo

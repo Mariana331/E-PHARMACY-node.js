@@ -1,0 +1,68 @@
+components:
+  schemas:
+
+    Customer:
+      type: object
+      required:
+        - _id
+        - image
+        - name
+        - email
+        - phone
+        - address
+        - register_date
+      properties:
+        _id:
+          type: string
+          description: Customer id
+          example: 68efd834f1781f960b1e7a6c
+        image:
+          type: string
+          description: Customer image
+          example: https://i.imgur.com/hz6bZkb.png
+        name:
+          type: string
+          description: Customer name
+          example: Serhii Mykhailenko
+        email:
+          type: string
+          description: Customer email
+          example: serhii.mykhailenko@gmail.com
+        phone:
+          type: string
+          description: Customer phone
+          example: +380727390123
+        address:
+          type: string
+          description: Customer address
+          example: Sviatoshynska, Bldg. 4, Apt. 117
+        register_date:
+          type: string
+          format: date-time
+          example: 2025-10-08T18:21:10.157+00:00
+
+          DashboardStatisticsResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        message:
+          type: string
+          example: "Successfully get statistics!"
+        data:
+          type: object
+          properties:
+            products:
+              type: integer
+              description: Statistics products
+              example: 63
+            suppliers:
+              type: integer
+              description: Statistics suppliers
+              example: 5
+            customers:
+              type: integer
+              description: Statistics customers
+              example: 88
+            

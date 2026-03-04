@@ -1,0 +1,30 @@
+openapi: 3.1.0
+
+info:
+  title: E-PHARMACY
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: This is a documentation of E-PHARMACY
+
+servers:
+  - url: http://127.0.0.1:3000
+
+paths:
+  # /students/{id}:
+  #   get:
+  #     $ref: ../swagger/paths/students/{id}/get.yaml
+  # /students:
+  #   post:
+  #     $ref: ../swagger/paths/students/post.yaml
+
+tags:
+  - name: Students
+    description: Operation with students
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,16 @@
+components:
+  schemas:
+    User:
+type: object
+required:
+  - email
+  - password
+properties:
+  email:
+    type: string
+    description: Shop email
+    example: goods@gmail.com
+  password:
+    type: string
+    description: User password
+    example: 68efd87778

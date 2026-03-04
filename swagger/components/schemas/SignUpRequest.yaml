@@ -1,0 +1,30 @@
+components:
+  schemas:
+
+    User:
+type: object
+required:
+  - name
+  - email
+  - phone
+  - password
+properties:
+  - name:
+    type: string
+    description: User name
+    example: John
+  -email:
+    type: string
+    description: User email
+    example: john@gmail.com
+  phone:
+    type: string
+    description: User phone
+    example: +380987766555
+  password:
+    type: string
+    description: User password
+    example: 68efd87778
+ 
+
+

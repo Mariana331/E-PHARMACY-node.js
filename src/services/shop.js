@@ -2,6 +2,7 @@ import { ShopsCollection } from '../db/models/shop.js';
 import { ProductsCollection } from '../db/models/product.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 import { SORT_ORDER } from '../utils/parseSortParams.js';
+import { ReviewsCollection } from '../db/models/review.js';
 
 export const createShop = async (payload) => {
   const shop = await ShopsCollection.create({ ...payload });
@@ -27,12 +28,11 @@ export const getAllProductsFromShop = async ({
   sortOrder = SORT_ORDER.ASC,
   sortBy = '_id',
   filter = {},
-  shopId,
 }) => {
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
-  const productsQuery = ProductsCollection.find({ shopId });
+  const productsQuery = ProductsCollection.find();
 
   if (filter.category) {
     productsQuery.where('category').equals(filter.category);
@@ -59,7 +59,9 @@ export const createProduct = async (payload) => {
 
 export const getProductById = async (productId) => {
   const product = await ProductsCollection.findById(productId);
-  return product;
+  if (!product) return null;
+  const reviews = await ReviewsCollection.find();
+  return { product, reviews };
 };
 
 export const editProduct = async (productId, payload) => {

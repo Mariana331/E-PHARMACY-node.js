@@ -22,29 +22,37 @@ router.use(authenticate);
 
 router.post('/create', validateBody(shopSchema), createShopController);
 
-router.get('/:shopId', isValidId, getShopByIdController);
+router.get('/:shopId', isValidId('shopId'), getShopByIdController);
 
 router.put(
   '/:shopId/update',
-  isValidId,
+  isValidId('shopId'),
   validateBody(shopSchema),
   updateShopController,
 );
 
-router.get('/:shopId/product', isValidId, getAllProductsFromShopController);
+router.get(
+  '/:shopId/product',
+  isValidId('shopId'),
+  getAllProductsFromShopController,
+);
 
 router.post(
   '/:shopId/product/add',
-  isValidId,
+  isValidId('shopId'),
   upload.single('photo'),
   validateBody(productSchema),
   createProductController,
 );
-router.get('/:shopId/product/:productId', isValidId, getProductByIdController);
+router.get(
+  '/:shopId/product/:productId',
+  isValidId('shopId'),
+  getProductByIdController,
+);
 
 router.put(
   '/:shopId/product/:productId/edit',
-  isValidId,
+  isValidId('shopId'),
   upload.single('photo'),
   validateBody(productSchema),
   editProductController,
@@ -52,7 +60,7 @@ router.put(
 
 router.delete(
   '/:shopId/product/:productId/delete',
-  isValidId,
+  isValidId('shopId'),
   deleteProductController,
 );
 
