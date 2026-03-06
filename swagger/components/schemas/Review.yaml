@@ -1,0 +1,18 @@
+type: object
+required:
+  - _id
+  - name
+  - testimonial
+properties:
+  _id:
+    type: string
+    description: Review id
+    example: 68efd834f1781f960b1e7a6c
+  name:
+    type: string
+    description: Review name
+    example: Maria Tkachyk
+  testimonial:
+    type: string
+    description: Testimonial result
+    example: I recently used this medical platform to book an appointment with a specialist, and I was impressed by how easy and user-friendly the process was. Highly recommended!

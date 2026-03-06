@@ -9,9 +9,11 @@ import { ONE_DAY } from '../constants/index.js';
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
-  res
-    .status(201)
-    .json({ status: 201, message: 'Successfully registered user', data: user });
+  res.status(201).json({
+    status: 201,
+    message: 'Successfully registered user!',
+    data: user,
+  });
 };
 
 export const loginUserController = async (req, res) => {
@@ -77,5 +79,14 @@ export const refreshUserSessionController = async (req, res) => {
 
 export const userInfoController = async (req, res) => {
   const user = await infoUser(req.user._id);
-  res.json({ name: user.name, email: user.email });
+  res.json({
+    status: 200,
+    message: 'Successfully got user-info!',
+    data: {
+      user: {
+        name: user.name,
+        email: user.email,
+      },
+    },
+  });
 };

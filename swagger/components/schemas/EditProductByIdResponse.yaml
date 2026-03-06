@@ -1,17 +1,21 @@
-components:
-  schemas:
-    editProduct:
 type: object
 required:
   - id
+  - shopId
   - photo
   - name
   - suppliers
   - stock
   - price
   - category
+  - createdAt
+  - updatedAt
 properties:
   id:
+    type: number
+    description: Product number
+    example: 12
+  shopId:
     type: number
     description: Product number
     example: 12
@@ -41,3 +45,11 @@ properties:
     description: Product category
     enum: ['Hand', 'Head', 'Medicine', 'Leg', 'Dental Care', 'Heart']
     example: Hand
+  createdAt:
+    type: string
+    format: date-time
+    example: 2025-10-08T18:21:10.157+00:00
+  updatedAt:
+    type: string
+    format: date-time
+    example: 2025-10-08T18:21:10.157+00:00

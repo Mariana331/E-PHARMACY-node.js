@@ -1,6 +1,3 @@
-components:
-  schemas:
-    Product:
 type: object
 required:
   - shopId
@@ -11,6 +8,8 @@ required:
   - stock
   - price
   - category
+  - createdAt
+  - updatedAt
 
 properties:
   shopId:
@@ -47,3 +46,11 @@ properties:
     description: Product category
     enum: ['Hand', 'Head', 'Medicine', 'Leg', 'Dental Care', 'Heart']
     example: Hand
+  createdAt:
+    type: string
+    format: date-time
+    example: 2025-10-08T18:21:10.157+00:00
+  updatedAt:
+    type: string
+    format: date-time
+    example: 2025-10-08T18:21:10.157+00:00

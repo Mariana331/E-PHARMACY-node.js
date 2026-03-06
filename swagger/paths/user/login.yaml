@@ -1,0 +1,42 @@
+tags:
+  - User
+summary: Login User
+operationId: loginUser
+description: Authenticate User and create session
+security: []
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../components/schemas/SignInRequest.yaml'
+
+responses:
+  '200':
+    description: 'Successfully logged in a user!'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully logged in a user!'
+            data:
+              type: object
+              required:
+                - user
+              properties:
+                user:
+                  $ref: '../../components/schemas/SignInResponse.yaml'
+
+  '401':
+    $ref: '../../components/responses/401.yaml'

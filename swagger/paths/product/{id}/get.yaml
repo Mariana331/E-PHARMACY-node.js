@@ -1,0 +1,62 @@
+tags:
+  - Product
+summary: Get Product by id
+operationId: getProductById
+description: Get Product by id
+parameters:
+  - in: path
+    name: shopId
+    required: true
+    schema:
+      type: string
+      example: 68498236a100312bea079030
+
+  - in: path
+    name: productId
+    required: true
+    schema:
+      type: string
+      example: 69a5716761228a7ed65a3ae9
+
+security:
+  - bearerAuth: []
+
+responses:
+  '200':
+    description: Successfully found product with id!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully found product with id!
+            data:
+              type: object
+              required:
+                - product
+                - reviews
+              properties:
+                product:
+                  $ref: '../../../components/schemas/GetProductByIDResponse.yaml'
+                reviews:
+                  type: array
+                  items:
+                    $ref: ../../../components/schemas/Review.yaml
+
+  '400':
+    $ref: '../../../components/responses/400.yaml'
+
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+
+  '500':
+    $ref: '../../../components/responses/500.yaml'

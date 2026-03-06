@@ -1,6 +1,3 @@
-components:
-  schemas:
-    User:
 type: object
 required:
   - accessToken

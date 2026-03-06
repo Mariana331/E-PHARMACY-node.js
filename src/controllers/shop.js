@@ -49,7 +49,7 @@ export const updateShopController = async (req, res) => {
 
   res.json({
     status: 200,
-    message: 'Shop update successfully',
+    message: 'Shop update successfully!',
     data: shop,
   });
 };
@@ -122,13 +122,13 @@ export const editProductController = async (req, res) => {
   if (product.updatedExisting === true) {
     return res.json({
       status: 200,
-      message: 'Product edited successfully',
+      message: 'Product edited successfully!',
       data: product,
     });
   }
   res.status(201).json({
     status: 201,
-    message: 'Product edited successfully',
+    message: 'Product edited successfully!',
     data: product,
   });
 };

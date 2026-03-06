@@ -7,7 +7,6 @@ required:
   - stock
   - price
   - category
-
 properties:
   id:
     type: number

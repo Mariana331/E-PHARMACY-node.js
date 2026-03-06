@@ -1,33 +1,33 @@
 type: object
 required:
-  - _id
   - name
+  - owner
   - email
-  - phone
-  - password
+  - logo
+  - _id
   - createdAt
   - updatedAt
 properties:
+  name:
+    type: string
+    description: Shop name
+    example: Goods
+  owner:
+    type: string
+    description: Owner name
+    example: John
+  email:
+    type: string
+    description: Shop email
+    example: goods@gmail.com
+  logo:
+    type: string
+    description: Shop logo
+    example: logo
   _id:
     type: string
     description: User id
     example: 68efd834f1781f960b1e7a6c
-  name:
-    type: string
-    description: User name
-    example: John
-  email:
-    type: string
-    description: User email
-    example: john@gmail.com
-  phone:
-    type: string
-    description: User phone
-    example: '+380987766555'
-  password:
-    type: string
-    description: User password
-    example: 68efd87778
   createdAt:
     type: string
     format: date-time

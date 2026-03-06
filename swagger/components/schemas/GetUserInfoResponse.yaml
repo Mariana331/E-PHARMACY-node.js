@@ -1,18 +1,13 @@
-components:
-  schemas:
-
-    User:
 type: object
 required:
   - name
   - email
 properties:
-  - name:
+  name:
     type: string
     description: User name
     example: John
-  -email:
+  email:
     type: string
     description: User email
     example: john@gmail.com
-  

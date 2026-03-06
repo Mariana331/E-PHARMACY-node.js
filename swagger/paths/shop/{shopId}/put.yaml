@@ -1,0 +1,57 @@
+tags:
+  - Shop
+summary: Update Shop
+operationId: putShop
+description: Shop updated
+parameters:
+  - in: path
+    name: shopId
+    required: true
+    schema:
+      type: string
+      example: 68498236a100312bea079030
+
+security:
+  - bearerAuth: []
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../../components/schemas/PutShopRequest.yaml'
+
+responses:
+  '200':
+    description: Shop update successfully!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Shop update successfully!
+            data:
+              type: object
+              required:
+                - shop
+              properties:
+                shop:
+                  $ref: '../../../components/schemas/PutShopResponse.yaml'
+
+  '400':
+    $ref: ../../../components/responses/400.yaml
+
+  '404':
+    $ref: ../../../components/responses/404.yaml
+
+  '500':
+    $ref: '../../../components/responses/500.yaml'

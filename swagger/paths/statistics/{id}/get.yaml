@@ -1,0 +1,52 @@
+tags:
+  - Statistics
+summary: Get Statistics by id
+operationId: getStatisticsById
+description: Get Statistics about goods
+parameters:
+  - in: path
+    name: clientId
+    required: true
+    description: Client id
+    schema:
+      type: string
+      example: 68498236a100312bea079030
+
+security:
+  - bearerAuth: []
+
+responses:
+  '200':
+    description: Successfully get statistics about goods!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully get statistics about goods!
+            data:
+              type: object
+              required:
+                - customer
+                - orders
+              properties:
+                customer:
+                  $ref: '../../../components/schemas/GetStatisticsClientIdGoodsResponse.yaml'
+                orders:
+                  type: array
+                  items:
+                    $ref: '../../../components/schemas/Order.yaml'
+
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

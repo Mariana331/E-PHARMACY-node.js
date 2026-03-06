@@ -1,0 +1,64 @@
+tags:
+  - Product
+summary: Update Product
+operationId: putProduct
+description: Product updated
+parameters:
+  - in: path
+    name: shopId
+    required: true
+    schema:
+      type: string
+      example: 68498236a100312bea079030
+
+  - in: path
+    name: productId
+    required: true
+    schema:
+      type: string
+      example: 69a5716761228a7ed65a3ae9
+
+security:
+  - bearerAuth: []
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../../components/schemas/EditProductByIDRequest.yaml'
+
+responses:
+  '201':
+    description: Product edited successfully!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Product edited successfully!
+            data:
+              type: object
+              required:
+                - product
+              properties:
+                product:
+                  $ref: '../../../components/schemas/EditProductByIdResponse.yaml'
+
+  '400':
+    $ref: '../../../components/responses/400.yaml'
+
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+
+  '500':
+    $ref: '../../../components/responses/500.yaml'

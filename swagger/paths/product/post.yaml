@@ -1,0 +1,55 @@
+tags:
+  - Product
+summary: Post new Product
+operationId: postProduct
+description: Add new product
+parameters:
+  - in: path
+    name: shopId
+    required: true
+    description: Shop id
+    schema:
+      type: string
+      example: 68498236a100312bea079030
+security:
+  - bearerAuth: []
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../components/schemas/AddProductRequest.yaml'
+
+responses:
+  '200':
+    description: Successfully created a product!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Shop update successfully!
+            data:
+              type: object
+              required:
+                - product
+              properties:
+                product:
+                  $ref: '../../components/schemas/AddProductResponse.yaml'
+
+  '400':
+    $ref: '../../components/responses/400.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '500':
+    $ref: ../../components/responses/500.yaml

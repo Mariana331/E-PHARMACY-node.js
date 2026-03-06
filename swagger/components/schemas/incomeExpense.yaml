@@ -1,0 +1,23 @@
+type: object
+required:
+  - _id
+  - name
+  - amount
+  - type
+properties:
+  _id:
+    type: string
+    description: incomeExpense id
+    example: 68efd834f1781f960b1e7a6c
+  name:
+    type: string
+    description: Review name
+    example: Maria Tkachyk
+  amount:
+    type: number
+    description: Amount number
+    example: 99.90
+  type:
+    type: string
+    enum: ['Income', 'Expense', 'Error']
+    example: Income

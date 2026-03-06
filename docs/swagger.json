@@ -1,0 +1,2276 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "E - PHARMACY",
+    "version": "1.0.0",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "description": "This is a documentation of E-PHARMACY"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:3001"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User authentication and registration"
+    },
+    {
+      "name": "Shop",
+      "description": "Shop information"
+    },
+    {
+      "name": "Product",
+      "description": "Product list"
+    },
+    {
+      "name": "Statistics",
+      "description": "Statistics information"
+    }
+  ],
+  "paths": {
+    "/user/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Register new User",
+        "operationId": "registerUser",
+        "description": "Register a new User and create session",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully registered user!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully registered user!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "user"
+                      ],
+                      "properties": {
+                        "user": {
+                          "$ref": "#/components/schemas/SignUpResponse"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login User",
+        "operationId": "loginUser",
+        "description": "Authenticate User and create session",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully logged in a user!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully logged in a user!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "user"
+                      ],
+                      "properties": {
+                        "user": {
+                          "$ref": "#/components/schemas/SignInResponse"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    },
+    "/user/refresh": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Refresh User session",
+        "operationId": "refreshSession",
+        "description": "Refresh access token using refresh token from cookie",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully refreshed a session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Session refreshed successfully!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User logout",
+        "operationId": "logoutUser",
+        "description": "Logout User from his session",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Logged out (no content)"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    },
+    "/user/user-info": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Information about User",
+        "operationId": "userInfo",
+        "description": "Get information about User",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully got user-info!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully got user-info!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "user"
+                      ],
+                      "properties": {
+                        "user": {
+                          "$ref": "#/components/schemas/GetUserInfoResponse"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/shop/create": {
+      "post": {
+        "tags": [
+          "Shop"
+        ],
+        "summary": "Create Shop",
+        "operationId": "postShop",
+        "description": "Create a new Shop",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateShopRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created a shop!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully created a shop!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "shop"
+                      ],
+                      "properties": {
+                        "shop": {
+                          "$ref": "#/components/schemas/CreateShopResponse"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/shop/{shopId}": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "summary": "Get Shop by id",
+        "operationId": "getShopById",
+        "description": "Get Shop by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shopId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "68498236a100312bea079030"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found shop with id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully found shop with id!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "shop"
+                      ],
+                      "properties": {
+                        "shop": {
+                          "$ref": "#/components/schemas/GetShopIdResponse"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/shop/{shopId}update": {
+      "put": {
+        "tags": [
+          "Shop"
+        ],
+        "summary": "Update Shop",
+        "operationId": "putShop",
+        "description": "Shop updated",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shopId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "68498236a100312bea079030"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutShopRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Shop update successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Shop update successfully!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "shop"
+                      ],
+                      "properties": {
+                        "shop": {
+                          "$ref": "#/components/schemas/PutShopResponse"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/shop/{shopId}/product": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get Products",
+        "operationId": "getProducts",
+        "description": "Get Products list and their categories",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shopId",
+            "required": true,
+            "description": "Shop id",
+            "schema": {
+              "type": "string",
+              "example": "68498236a100312bea079030"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found products!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully found products!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "data",
+                        "page",
+                        "perPage",
+                        "totalItems",
+                        "totalPages",
+                        "hasNextPage",
+                        "hasPreviousPage"
+                      ],
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GetProductsResponse"
+                          }
+                        },
+                        "page": {
+                          "type": "number",
+                          "example": 2
+                        },
+                        "perPage": {
+                          "type": "number",
+                          "example": 4
+                        },
+                        "totalItems": {
+                          "type": "number",
+                          "example": 4
+                        },
+                        "totalPages": {
+                          "type": "number",
+                          "example": 4
+                        },
+                        "hasNextPage": {
+                          "type": "boolean",
+                          "example": false
+                        },
+                        "hasPreviousPage": {
+                          "type": "boolean",
+                          "example": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/shop/{shopId}/product/add": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Post new Product",
+        "operationId": "postProduct",
+        "description": "Add new product",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shopId",
+            "required": true,
+            "description": "Shop id",
+            "schema": {
+              "type": "string",
+              "example": "68498236a100312bea079030"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddProductRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created a product!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Shop update successfully!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "product"
+                      ],
+                      "properties": {
+                        "product": {
+                          "$ref": "#/components/schemas/AddProductResponse"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/shop/{shopId}/product/{productId}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get Product by id",
+        "operationId": "getProductById",
+        "description": "Get Product by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shopId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "68498236a100312bea079030"
+            }
+          },
+          {
+            "in": "path",
+            "name": "productId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "69a5716761228a7ed65a3ae9"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found product with id!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully found product with id!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "product",
+                        "reviews"
+                      ],
+                      "properties": {
+                        "product": {
+                          "$ref": "#/components/schemas/GetProductByIDResponse"
+                        },
+                        "reviews": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Review"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/shop/{shopId}/product/{productId}/edit": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Update Product",
+        "operationId": "putProduct",
+        "description": "Product updated",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shopId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "68498236a100312bea079030"
+            }
+          },
+          {
+            "in": "path",
+            "name": "productId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "69a5716761228a7ed65a3ae9"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditProductByIDRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product edited successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Product edited successfully!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "product"
+                      ],
+                      "properties": {
+                        "product": {
+                          "$ref": "#/components/schemas/EditProductByIdResponse"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/shop/{shopId}/product/{productId}/delete": {
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Delete Product",
+        "operationId": "deleteProduct",
+        "description": "Product Delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shopId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "68498236a100312bea079030"
+            }
+          },
+          {
+            "in": "path",
+            "name": "productId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "69a5716761228a7ed65a3ae9"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Product deleted successfully!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/statistics": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "summary": "Get Statistics",
+        "operationId": "getStatistics",
+        "description": "Statistics about products, suppliers and customers",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully get statistics!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully get statistics!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "products",
+                        "suppliers",
+                        "customers",
+                        "recentlyCustomers",
+                        "incomeExpense"
+                      ],
+                      "properties": {
+                        "products": {
+                          "type": "integer",
+                          "description": "Statistics products",
+                          "example": 63
+                        },
+                        "suppliers": {
+                          "type": "integer",
+                          "description": "Statistics suppliers",
+                          "example": 5
+                        },
+                        "customers": {
+                          "type": "integer",
+                          "description": "Statistics customers",
+                          "example": 88
+                        },
+                        "recentlyCustomers": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GetStatisticsResponse"
+                          }
+                        },
+                        "incomeExpense": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/incomeExpense"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/statistics/{clientId}/goods": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "summary": "Get Statistics by id",
+        "operationId": "getStatisticsById",
+        "description": "Get Statistics about goods",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "clientId",
+            "required": true,
+            "description": "Client id",
+            "schema": {
+              "type": "string",
+              "example": "68498236a100312bea079030"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully get statistics about goods!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully get statistics about goods!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "customer",
+                        "orders"
+                      ],
+                      "properties": {
+                        "customer": {
+                          "$ref": "#/components/schemas/GetStatisticsClientIdGoodsResponse"
+                        },
+                        "orders": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Order"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "SignUpRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "email",
+          "phone",
+          "password"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "john@gmail.com"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User phone",
+            "example": "+380987766555"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "example": "68efd87778"
+          }
+        }
+      },
+      "SignUpResponse": {
+        "type": "object",
+        "required": [
+          "name",
+          "email",
+          "phone",
+          "_id",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "john@gmail.com"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User phone",
+            "example": "+380987766555"
+          },
+          "_id": {
+            "type": "string",
+            "description": "User id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          }
+        }
+      },
+      "SignInRequest": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Shop email",
+            "example": "goods@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "example": "68efd87778"
+          }
+        }
+      },
+      "SignInResponse": {
+        "type": "object",
+        "required": [
+          "accessToken"
+        ],
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "User accessToken",
+            "example": "TYEJ0iVVw81X8Bn0hX/nykwWhcYQ1EsjAHR"
+          }
+        }
+      },
+      "GetUserInfoResponse": {
+        "type": "object",
+        "required": [
+          "name",
+          "email"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "john@gmail.com"
+          }
+        }
+      },
+      "CreateShopRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "owner",
+          "email",
+          "logo"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Shop name",
+            "example": "Goods"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner name",
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "description": "Shop email",
+            "example": "goods@gmail.com"
+          },
+          "logo": {
+            "type": "string",
+            "description": "Shop logo",
+            "example": "logo"
+          }
+        }
+      },
+      "CreateShopResponse": {
+        "type": "object",
+        "required": [
+          "name",
+          "owner",
+          "email",
+          "logo",
+          "_id",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Shop name",
+            "example": "Goods"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner name",
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "description": "Shop email",
+            "example": "goods@gmail.com"
+          },
+          "logo": {
+            "type": "string",
+            "description": "Shop logo",
+            "example": "logo"
+          },
+          "_id": {
+            "type": "string",
+            "description": "User id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          }
+        }
+      },
+      "GetShopIdResponse": {
+        "type": "object",
+        "required": [
+          "_id",
+          "name",
+          "email",
+          "phone",
+          "password",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "john@gmail.com"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User phone",
+            "example": "+380987766555"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "example": "68efd87778"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          }
+        }
+      },
+      "PutShopRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "owner",
+          "email",
+          "logo"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Shop name",
+            "example": "Goods"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner name",
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "description": "Shop email",
+            "example": "goods@gmail.com"
+          },
+          "logo": {
+            "type": "string",
+            "description": "Shop logo",
+            "example": "logo"
+          }
+        }
+      },
+      "PutShopResponse": {
+        "type": "object",
+        "required": [
+          "name",
+          "owner",
+          "email",
+          "logo",
+          "_id",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Shop name",
+            "example": "Goods"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner name",
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "description": "Shop email",
+            "example": "goods@gmail.com"
+          },
+          "logo": {
+            "type": "string",
+            "description": "Shop logo",
+            "example": "logo"
+          },
+          "_id": {
+            "type": "string",
+            "description": "User id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          }
+        }
+      },
+      "GetProductsResponse": {
+        "type": "object",
+        "required": [
+          "shopId",
+          "id",
+          "photo",
+          "name",
+          "suppliers",
+          "stock",
+          "price",
+          "category"
+        ],
+        "properties": {
+          "shopId": {
+            "type": "string",
+            "description": "Shop id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "id": {
+            "type": "number",
+            "description": "Product number",
+            "example": 12
+          },
+          "photo": {
+            "type": "string",
+            "description": "Product photo",
+            "example": "https://i.ibb.co/X330FTj/shop-4-10-1000x1000-min.jpg"
+          },
+          "name": {
+            "type": "string",
+            "description": "Product name",
+            "example": "Shampoo"
+          },
+          "suppliers": {
+            "type": "string",
+            "description": "Product supplier",
+            "enum": [
+              "Square",
+              "Beximco",
+              "Uniliver",
+              "ACI",
+              "Acme"
+            ],
+            "example": "Square"
+          },
+          "stock": {
+            "type": "number",
+            "description": "Product stock",
+            "example": 15
+          },
+          "price": {
+            "type": "number",
+            "description": "Product price",
+            "example": 45.66
+          },
+          "category": {
+            "type": "string",
+            "description": "Product category",
+            "enum": [
+              "Hand",
+              "Head",
+              "Medicine",
+              "Leg",
+              "Dental Care",
+              "Heart"
+            ],
+            "example": "Hand"
+          }
+        }
+      },
+      "AddProductRequest": {
+        "type": "object",
+        "required": [
+          "id",
+          "photo",
+          "name",
+          "suppliers",
+          "stock",
+          "price",
+          "category"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Product number",
+            "example": 12
+          },
+          "photo": {
+            "type": "string",
+            "description": "Product photo",
+            "example": "https://i.ibb.co/X330FTj/shop-4-10-1000x1000-min.jpg"
+          },
+          "name": {
+            "type": "string",
+            "description": "Product name",
+            "example": "Shampoo"
+          },
+          "suppliers": {
+            "type": "string",
+            "description": "Product supplier",
+            "enum": [
+              "Square",
+              "Beximco",
+              "Uniliver",
+              "ACI",
+              "Acme"
+            ],
+            "example": "Square"
+          },
+          "stock": {
+            "type": "number",
+            "description": "Product stock",
+            "example": 15
+          },
+          "price": {
+            "type": "number",
+            "description": "Product price",
+            "example": 45.66
+          },
+          "category": {
+            "type": "string",
+            "description": "Product category",
+            "enum": [
+              "Hand",
+              "Head",
+              "Medicine",
+              "Leg",
+              "Dental Care",
+              "Heart"
+            ],
+            "example": "Hand"
+          }
+        }
+      },
+      "AddProductResponse": {
+        "type": "object",
+        "required": [
+          "shopId",
+          "id",
+          "photo",
+          "name",
+          "suppliers",
+          "stock",
+          "price",
+          "category",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "shopId": {
+            "type": "string",
+            "description": "Shop id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "id": {
+            "type": "number",
+            "description": "Product number",
+            "example": 12
+          },
+          "photo": {
+            "type": "string",
+            "description": "Product photo",
+            "example": "https://i.ibb.co/X330FTj/shop-4-10-1000x1000-min.jpg"
+          },
+          "name": {
+            "type": "string",
+            "description": "Product name",
+            "example": "Shampoo"
+          },
+          "suppliers": {
+            "type": "string",
+            "description": "Product supplier",
+            "enum": [
+              "Square",
+              "Beximco",
+              "Uniliver",
+              "ACI",
+              "Acme"
+            ],
+            "example": "Square"
+          },
+          "stock": {
+            "type": "number",
+            "description": "Product stock",
+            "example": 15
+          },
+          "price": {
+            "type": "number",
+            "description": "Product price",
+            "example": 45.66
+          },
+          "category": {
+            "type": "string",
+            "description": "Product category",
+            "enum": [
+              "Hand",
+              "Head",
+              "Medicine",
+              "Leg",
+              "Dental Care",
+              "Heart"
+            ],
+            "example": "Hand"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          }
+        }
+      },
+      "GetProductByIDResponse": {
+        "type": "object",
+        "required": [
+          "shopId",
+          "id",
+          "photo",
+          "name",
+          "suppliers",
+          "stock",
+          "price",
+          "category",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "shopId": {
+            "type": "string",
+            "description": "Shop id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "id": {
+            "type": "number",
+            "description": "Product number",
+            "example": 12
+          },
+          "photo": {
+            "type": "string",
+            "description": "Product photo",
+            "example": "https://i.ibb.co/X330FTj/shop-4-10-1000x1000-min.jpg"
+          },
+          "name": {
+            "type": "string",
+            "description": "Product name",
+            "example": "Shampoo"
+          },
+          "suppliers": {
+            "type": "string",
+            "description": "Product supplier",
+            "enum": [
+              "Square",
+              "Beximco",
+              "Uniliver",
+              "ACI",
+              "Acme"
+            ],
+            "example": "Square"
+          },
+          "stock": {
+            "type": "number",
+            "description": "Product stock",
+            "example": 15
+          },
+          "price": {
+            "type": "number",
+            "description": "Product price",
+            "example": 45.66
+          },
+          "category": {
+            "type": "string",
+            "description": "Product category",
+            "enum": [
+              "Hand",
+              "Head",
+              "Medicine",
+              "Leg",
+              "Dental Care",
+              "Heart"
+            ],
+            "example": "Hand"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          }
+        }
+      },
+      "Review": {
+        "type": "object",
+        "required": [
+          "_id",
+          "name",
+          "testimonial"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Review id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "name": {
+            "type": "string",
+            "description": "Review name",
+            "example": "Maria Tkachyk"
+          },
+          "testimonial": {
+            "type": "string",
+            "description": "Testimonial result",
+            "example": "I recently used this medical platform to book an appointment with a specialist, and I was impressed by how easy and user-friendly the process was. Highly recommended!"
+          }
+        }
+      },
+      "EditProductByIDRequest": {
+        "type": "object",
+        "required": [
+          "id",
+          "photo",
+          "name",
+          "suppliers",
+          "stock",
+          "price",
+          "category"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Product number",
+            "example": 12
+          },
+          "photo": {
+            "type": "string",
+            "description": "Product photo",
+            "example": "https://i.ibb.co/X330FTj/shop-4-10-1000x1000-min.jpg"
+          },
+          "name": {
+            "type": "string",
+            "description": "Product name",
+            "example": "Shampoo"
+          },
+          "suppliers": {
+            "type": "string",
+            "description": "Product supplier",
+            "enum": [
+              "Square",
+              "Beximco",
+              "Uniliver",
+              "ACI",
+              "Acme"
+            ],
+            "example": "Square"
+          },
+          "stock": {
+            "type": "number",
+            "description": "Product stock",
+            "example": 15
+          },
+          "price": {
+            "type": "number",
+            "description": "Product price",
+            "example": 45.66
+          },
+          "category": {
+            "type": "string",
+            "description": "Product category",
+            "enum": [
+              "Hand",
+              "Head",
+              "Medicine",
+              "Leg",
+              "Dental Care",
+              "Heart"
+            ],
+            "example": "Hand"
+          }
+        }
+      },
+      "EditProductByIdResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "shopId",
+          "photo",
+          "name",
+          "suppliers",
+          "stock",
+          "price",
+          "category",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Product number",
+            "example": 12
+          },
+          "shopId": {
+            "type": "number",
+            "description": "Product number",
+            "example": 12
+          },
+          "photo": {
+            "type": "string",
+            "description": "Product photo",
+            "example": "https://i.ibb.co/X330FTj/shop-4-10-1000x1000-min.jpg"
+          },
+          "name": {
+            "type": "string",
+            "description": "Product name",
+            "example": "Shampoo"
+          },
+          "suppliers": {
+            "type": "string",
+            "description": "Product supplier",
+            "enum": [
+              "Square",
+              "Beximco",
+              "Uniliver",
+              "ACI",
+              "Acme"
+            ],
+            "example": "Square"
+          },
+          "stock": {
+            "type": "number",
+            "description": "Product stock",
+            "example": 15
+          },
+          "price": {
+            "type": "number",
+            "description": "Product price",
+            "example": 45.66
+          },
+          "category": {
+            "type": "string",
+            "description": "Product category",
+            "enum": [
+              "Hand",
+              "Head",
+              "Medicine",
+              "Leg",
+              "Dental Care",
+              "Heart"
+            ],
+            "example": "Hand"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          }
+        }
+      },
+      "GetStatisticsResponse": {
+        "type": "object",
+        "required": [
+          "_id",
+          "image",
+          "name",
+          "email",
+          "phone",
+          "address",
+          "register_date"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Customer id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "image": {
+            "type": "string",
+            "description": "Customer image",
+            "example": "https://i.imgur.com/hz6bZkb.png"
+          },
+          "name": {
+            "type": "string",
+            "description": "Customer name",
+            "example": "Serhii Mykhailenko"
+          },
+          "email": {
+            "type": "string",
+            "description": "Customer email",
+            "example": "serhii.mykhailenko@gmail.com"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Customer phone",
+            "example": "+380727390123"
+          },
+          "address": {
+            "type": "string",
+            "description": "Customer address",
+            "example": "Sviatoshynska, Bldg. 4, Apt. 117"
+          },
+          "register_date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          }
+        }
+      },
+      "incomeExpense": {
+        "type": "object",
+        "required": [
+          "_id",
+          "name",
+          "amount",
+          "type"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "incomeExpense id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "name": {
+            "type": "string",
+            "description": "Review name",
+            "example": "Maria Tkachyk"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount number",
+            "example": 99.9
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Income",
+              "Expense",
+              "Error"
+            ],
+            "example": "Income"
+          }
+        }
+      },
+      "GetStatisticsClientIdGoodsResponse": {
+        "type": "object",
+        "required": [
+          "clientId",
+          "image",
+          "name",
+          "email",
+          "phone",
+          "address",
+          "register_date"
+        ],
+        "properties": {
+          "clientId": {
+            "type": "string",
+            "description": "Customer id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "image": {
+            "type": "string",
+            "description": "Customer image",
+            "example": "https://i.imgur.com/hz6bZkb.png"
+          },
+          "name": {
+            "type": "string",
+            "description": "Customer name",
+            "example": "Serhii Mykhailenko"
+          },
+          "email": {
+            "type": "string",
+            "description": "Customer email",
+            "example": "serhii.mykhailenko@gmail.com"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Customer phone",
+            "example": "+380727390123"
+          },
+          "address": {
+            "type": "string",
+            "description": "Customer address",
+            "example": "Sviatoshynska, Bldg. 4, Apt. 117"
+          },
+          "register_date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "required": [
+          "_id",
+          "photo",
+          "name",
+          "address",
+          "products",
+          "totalPrice",
+          "status",
+          "order_date"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Order id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
+          "photo": {
+            "type": "string",
+            "description": "Order photo",
+            "example": "https://i.imgur.com/hz6bZkb.png"
+          },
+          "name": {
+            "type": "string",
+            "description": "Order name",
+            "example": "Noah Davis"
+          },
+          "address": {
+            "type": "string",
+            "description": "Order address",
+            "example": "Banani-11, Bldg. 91, Apt. 181"
+          },
+          "products": {
+            "type": "number",
+            "description": "total products",
+            "example": 67
+          },
+          "totalPrice": {
+            "type": "number",
+            "description": "totalPrice",
+            "example": 420.5
+          },
+          "status": {
+            "type": "string",
+            "description": "Order status",
+            "enum": [
+              "Delivered",
+              "Processing",
+              "Completed",
+              "Shipped",
+              "Cancelled",
+              "Confirmed"
+            ],
+            "example": "Delivered"
+          },
+          "order_date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-10-08T18:21:10.157+00:00"
+          }
+        }
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "BadRequest"
+                },
+                "data": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Error object produced by http-errors (may contain name, message, details, etc.)",
+                  "example": {
+                    "name": "BadRequest",
+                    "message": "Validation failed",
+                    "details": [
+                      "name is required"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 401
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Unauthorized Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "User not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "User not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "409": {
+        "description": "Conflict — resource already exists (Email in use)",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 409
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Conflict"
+                },
+                "data": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Error object produced by http-errors (may contain name, message, details, etc.)",
+                  "example": {
+                    "name": "Conflict",
+                    "message": "Email already in use"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 500
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

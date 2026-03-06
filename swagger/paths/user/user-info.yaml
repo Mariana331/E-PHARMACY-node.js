@@ -1,0 +1,39 @@
+tags:
+  - User
+summary: Information about User
+operationId: userInfo
+description: Get information about User
+security:
+  - bearerAuth: []
+
+responses:
+  '200':
+    description: 'Successfully got user-info!'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully got user-info!'
+            data:
+              type: object
+              required:
+                - user
+              properties:
+                user:
+                  $ref: '../../components/schemas/GetUserInfoResponse.yaml'
+
+  '401':
+    $ref: '../../components/responses/401.yaml'
+
+  '404':
+    $ref: '../../components/responses/404.yaml'

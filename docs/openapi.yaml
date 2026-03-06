@@ -1,7 +1,7 @@
 openapi: 3.1.0
 
 info:
-  title: E-PHARMACY
+  title: E - PHARMACY
   version: 1.0.0
   license:
     name: Apache 2.0
@@ -9,19 +9,66 @@ info:
   description: This is a documentation of E-PHARMACY
 
 servers:
-  - url: http://127.0.0.1:3000
-
-paths:
-  # /students/{id}:
-  #   get:
-  #     $ref: ../swagger/paths/students/{id}/get.yaml
-  # /students:
-  #   post:
-  #     $ref: ../swagger/paths/students/post.yaml
+  - url: http://127.0.0.1:3001
 
 tags:
-  - name: Students
-    description: Operation with students
+  - name: User
+    description: User authentication and registration
+  - name: Shop
+    description: Shop information
+  - name: Product
+    description: Product list
+  - name: Statistics
+    description: Statistics information
+
+paths:
+  /user/register:
+    post:
+      $ref: '../swagger/paths/user/register.yaml'
+  /user/login:
+    post:
+      $ref: '../swagger/paths/user/login.yaml'
+  /user/refresh:
+    post:
+      $ref: '../swagger/paths/user/refresh.yaml'
+  /user/logout:
+    get:
+      $ref: '../swagger/paths/user/logout.yaml'
+  /user/user-info:
+    get:
+      $ref: '../swagger/paths/user/user-info.yaml'
+
+  /shop/create:
+    post:
+      $ref: '../swagger/paths/shop/post.yaml'
+  /shop/{shopId}:
+    get:
+      $ref: '../swagger/paths/shop/{shopId}/get.yaml'
+  /shop/{shopId}update:
+    put:
+      $ref: '../swagger/paths/shop/{shopId}/put.yaml'
+  /shop/{shopId}/product:
+    get:
+      $ref: '../swagger/paths/product/get.yaml'
+  /shop/{shopId}/product/add:
+    post:
+      $ref: '../swagger/paths/product/post.yaml'
+  /shop/{shopId}/product/{productId}:
+    get:
+      $ref: '../swagger/paths/product/{id}/get.yaml'
+  /shop/{shopId}/product/{productId}/edit:
+    put:
+      $ref: '../swagger/paths/product/{id}/put.yaml'
+  /shop/{shopId}/product/{productId}/delete:
+    delete:
+      $ref: '../swagger/paths/product/{id}/delete.yaml'
+
+  /statistics:
+    get:
+      $ref: '../swagger/paths/statistics/get.yaml'
+  /statistics/{clientId}/goods:
+    get:
+      $ref: '../swagger/paths/statistics/{id}/get.yaml'
 
 components:
   securitySchemes:

@@ -1,0 +1,49 @@
+tags:
+  - Shop
+summary: Create Shop
+operationId: postShop
+description: Create a new Shop
+security:
+  - bearerAuth: []
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../components/schemas/CreateShopRequest.yaml'
+
+responses:
+  '201':
+    description: Successfully created a shop!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a shop!
+            data:
+              type: object
+              required:
+                - shop
+              properties:
+                shop:
+                  $ref: '../../components/schemas/CreateShopResponse.yaml'
+
+  '400':
+    $ref: '../../components/responses/400.yaml'
+
+  '401':
+    $ref: '../../components/responses/401.yaml'
+
+  '500':
+    $ref: '../../components/responses/500.yaml'

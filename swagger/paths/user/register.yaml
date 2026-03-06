@@ -1,0 +1,48 @@
+tags:
+  - User
+summary: Register new User
+operationId: registerUser
+description: 'Register a new User and create session'
+security: []
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../components/schemas/SignUpRequest.yaml'
+
+responses:
+  '201':
+    description: Successfully registered user!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully registered user!
+            data:
+              type: object
+              required:
+                - user
+              properties:
+                user:
+                  $ref: '../../components/schemas/SignUpResponse.yaml'
+
+  '400':
+    $ref: '../../components/responses/400.yaml'
+
+  '409':
+    $ref: '../../components/responses/409.yaml'
+
+  '500':
+    $ref: '../../components/responses/500.yaml'
