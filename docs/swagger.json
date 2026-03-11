@@ -1261,7 +1261,11 @@
           "name",
           "owner",
           "email",
-          "logo"
+          "phone",
+          "street",
+          "city",
+          "zip",
+          "delivery"
         ],
         "properties": {
           "name": {
@@ -1279,25 +1283,54 @@
             "description": "Shop email",
             "example": "goods@gmail.com"
           },
-          "logo": {
+          "phone": {
             "type": "string",
-            "description": "Shop logo",
-            "example": "logo"
+            "description": "Mobile number",
+            "example": "+380976655445"
+          },
+          "street": {
+            "type": "string",
+            "description": "Street address",
+            "example": "Kretoria F45"
+          },
+          "city": {
+            "type": "string",
+            "description": "City address",
+            "example": "Castlerea"
+          },
+          "zip": {
+            "type": "number",
+            "description": "Zip / Postal address",
+            "example": 10010
+          },
+          "delivery": {
+            "type": "boolean",
+            "description": "Has own delivery system",
+            "example": true
           }
         }
       },
       "CreateShopResponse": {
         "type": "object",
         "required": [
+          "_id",
           "name",
           "owner",
           "email",
-          "logo",
-          "_id",
+          "phone",
+          "street",
+          "city",
+          "zip",
+          "delivery",
           "createdAt",
           "updatedAt"
         ],
         "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
           "name": {
             "type": "string",
             "description": "Shop name",
@@ -1313,15 +1346,30 @@
             "description": "Shop email",
             "example": "goods@gmail.com"
           },
-          "logo": {
+          "phone": {
             "type": "string",
-            "description": "Shop logo",
-            "example": "logo"
+            "description": "Mobile number",
+            "example": "+380976655445"
           },
-          "_id": {
+          "street": {
             "type": "string",
-            "description": "User id",
-            "example": "68efd834f1781f960b1e7a6c"
+            "description": "Street address",
+            "example": "Kretoria F45"
+          },
+          "city": {
+            "type": "string",
+            "description": "City address",
+            "example": "Castlerea"
+          },
+          "zip": {
+            "type": "number",
+            "description": "Zip / Postal address",
+            "example": 10010
+          },
+          "delivery": {
+            "type": "boolean",
+            "description": "Has own delivery system",
+            "example": true
           },
           "createdAt": {
             "type": "string",
@@ -1340,9 +1388,13 @@
         "required": [
           "_id",
           "name",
+          "owner",
           "email",
           "phone",
-          "password",
+          "street",
+          "city",
+          "zip",
+          "delivery",
           "createdAt",
           "updatedAt"
         ],
@@ -1354,23 +1406,43 @@
           },
           "name": {
             "type": "string",
-            "description": "User name",
+            "description": "Shop name",
+            "example": "Goods"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner name",
             "example": "John"
           },
           "email": {
             "type": "string",
-            "description": "User email",
-            "example": "john@gmail.com"
+            "description": "Shop email",
+            "example": "goods@gmail.com"
           },
           "phone": {
             "type": "string",
-            "description": "User phone",
-            "example": "+380987766555"
+            "description": "Mobile number",
+            "example": "+380976655445"
           },
-          "password": {
+          "street": {
             "type": "string",
-            "description": "User password",
-            "example": "68efd87778"
+            "description": "Street address",
+            "example": "Kretoria F45"
+          },
+          "city": {
+            "type": "string",
+            "description": "City address",
+            "example": "Castlerea"
+          },
+          "zip": {
+            "type": "number",
+            "description": "Zip / Postal address",
+            "example": 10010
+          },
+          "delivery": {
+            "type": "boolean",
+            "description": "Has own delivery system",
+            "example": true
           },
           "createdAt": {
             "type": "string",
@@ -1390,7 +1462,11 @@
           "name",
           "owner",
           "email",
-          "logo"
+          "phone",
+          "street",
+          "city",
+          "zip",
+          "delivery"
         ],
         "properties": {
           "name": {
@@ -1408,25 +1484,54 @@
             "description": "Shop email",
             "example": "goods@gmail.com"
           },
-          "logo": {
+          "phone": {
             "type": "string",
-            "description": "Shop logo",
-            "example": "logo"
+            "description": "Mobile number",
+            "example": "+380976655445"
+          },
+          "street": {
+            "type": "string",
+            "description": "Street address",
+            "example": "Kretoria F45"
+          },
+          "city": {
+            "type": "string",
+            "description": "City address",
+            "example": "Castlerea"
+          },
+          "zip": {
+            "type": "number",
+            "description": "Zip / Postal address",
+            "example": 10010
+          },
+          "delivery": {
+            "type": "boolean",
+            "description": "Has own delivery system",
+            "example": true
           }
         }
       },
       "PutShopResponse": {
         "type": "object",
         "required": [
+          "_id",
           "name",
           "owner",
           "email",
-          "logo",
-          "_id",
+          "phone",
+          "street",
+          "city",
+          "zip",
+          "delivery",
           "createdAt",
           "updatedAt"
         ],
         "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User id",
+            "example": "68efd834f1781f960b1e7a6c"
+          },
           "name": {
             "type": "string",
             "description": "Shop name",
@@ -1442,15 +1547,30 @@
             "description": "Shop email",
             "example": "goods@gmail.com"
           },
-          "logo": {
+          "phone": {
             "type": "string",
-            "description": "Shop logo",
-            "example": "logo"
+            "description": "Mobile number",
+            "example": "+380976655445"
           },
-          "_id": {
+          "street": {
             "type": "string",
-            "description": "User id",
-            "example": "68efd834f1781f960b1e7a6c"
+            "description": "Street address",
+            "example": "Kretoria F45"
+          },
+          "city": {
+            "type": "string",
+            "description": "City address",
+            "example": "Castlerea"
+          },
+          "zip": {
+            "type": "number",
+            "description": "Zip / Postal address",
+            "example": 10010
+          },
+          "delivery": {
+            "type": "boolean",
+            "description": "Has own delivery system",
+            "example": true
           },
           "createdAt": {
             "type": "string",

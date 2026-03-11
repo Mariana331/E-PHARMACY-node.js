@@ -2,9 +2,13 @@ type: object
 required:
   - _id
   - name
+  - owner
   - email
   - phone
-  - password
+  - street
+  - city
+  - zip
+  - delivery
   - createdAt
   - updatedAt
 properties:
@@ -14,20 +18,36 @@ properties:
     example: 68efd834f1781f960b1e7a6c
   name:
     type: string
-    description: User name
+    description: Shop name
+    example: Goods
+  owner:
+    type: string
+    description: Owner name
     example: John
   email:
     type: string
-    description: User email
-    example: john@gmail.com
+    description: Shop email
+    example: goods@gmail.com
   phone:
     type: string
-    description: User phone
-    example: '+380987766555'
-  password:
+    description: Mobile number
+    example: '+380976655445'
+  street:
     type: string
-    description: User password
-    example: 68efd87778
+    description: Street address
+    example: Kretoria F45
+  city:
+    type: string
+    description: City address
+    example: Castlerea
+  zip:
+    type: number
+    description: Zip / Postal address
+    example: 10010
+  delivery:
+    type: boolean
+    description: Has own delivery system
+    example: true
   createdAt:
     type: string
     format: date-time

@@ -3,7 +3,11 @@ required:
   - name
   - owner
   - email
-  - logo
+  - phone
+  - street
+  - city
+  - zip
+  - delivery
 properties:
   name:
     type: string
@@ -17,7 +21,23 @@ properties:
     type: string
     description: Shop email
     example: goods@gmail.com
-  logo:
+  phone:
     type: string
-    description: Shop logo
-    example: logo
+    description: Mobile number
+    example: '+380976655445'
+  street:
+    type: string
+    description: Street address
+    example: Kretoria F45
+  city:
+    type: string
+    description: City address
+    example: Castlerea
+  zip:
+    type: number
+    description: Zip / Postal address
+    example: 10010
+  delivery:
+    type: boolean
+    description: Has own delivery system
+    example: true
