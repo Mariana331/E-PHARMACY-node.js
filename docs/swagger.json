@@ -1299,9 +1299,9 @@
             "example": "Castlerea"
           },
           "zip": {
-            "type": "number",
+            "type": "string",
             "description": "Zip / Postal address",
-            "example": 10010
+            "example": "10010"
           },
           "delivery": {
             "type": "boolean",
@@ -1362,9 +1362,9 @@
             "example": "Castlerea"
           },
           "zip": {
-            "type": "number",
+            "type": "string",
             "description": "Zip / Postal address",
-            "example": 10010
+            "example": "10010"
           },
           "delivery": {
             "type": "boolean",
@@ -1435,9 +1435,9 @@
             "example": "Castlerea"
           },
           "zip": {
-            "type": "number",
+            "type": "string",
             "description": "Zip / Postal address",
-            "example": 10010
+            "example": "10010"
           },
           "delivery": {
             "type": "boolean",

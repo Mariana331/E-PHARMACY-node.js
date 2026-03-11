@@ -8,7 +8,7 @@ const shopSchema = new Schema(
     phone: { type: String, required: true },
     street: { type: String, required: true },
     city: { type: String, required: true },
-    zip: { type: Number, required: true },
+    zip: { type: String, required: true },
     delivery: { type: Boolean, required: true },
   },
   { timestamps: true, versionKey: false },
