@@ -1,4 +1,3 @@
-import { boolean } from 'joi';
 import { model, Schema } from 'mongoose';
 
 const shopSchema = new Schema(
@@ -10,7 +9,7 @@ const shopSchema = new Schema(
     street: { type: String, required: true },
     city: { type: String, required: true },
     zip: { type: Number, required: true },
-    delivery: { type: boolean, required: true },
+    delivery: { type: Boolean, required: true },
   },
   { timestamps: true, versionKey: false },
 );
