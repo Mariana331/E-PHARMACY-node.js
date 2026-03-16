@@ -14,7 +14,7 @@
       "url": "http://localhost:3001"
     },
     {
-      "url": "https://e-pharmacy-node-js.onrender.com/api"
+      "url": "https://e-pharmacy-node-js.onrender.com"
     }
   ],
   "tags": [
@@ -216,7 +216,7 @@
       }
     },
     "/user/logout": {
-      "get": {
+      "post": {
         "tags": [
           "User"
         ],

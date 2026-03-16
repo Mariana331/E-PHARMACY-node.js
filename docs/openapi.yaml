@@ -11,7 +11,7 @@ info:
 servers:
   - url: http://localhost:3001
 
-  - url: https://e-pharmacy-node-js.onrender.com/api
+  - url: https://e-pharmacy-node-js.onrender.com
 
 tags:
   - name: User
@@ -34,7 +34,7 @@ paths:
     post:
       $ref: '../swagger/paths/user/refresh.yaml'
   /user/logout:
-    get:
+    post:
       $ref: '../swagger/paths/user/logout.yaml'
   /user/user-info:
     get:
