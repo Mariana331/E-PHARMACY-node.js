@@ -34,9 +34,13 @@ responses:
               type: object
               required:
                 - user
+                - accessToken
               properties:
                 user:
                   $ref: '../../components/schemas/SignInResponse.yaml'
+                accessToken:
+                  type: string
+                  example: ydRUQDKZCi2Tc0MJUFcOKANMa1MM4xr3XcYlK5V5
 
   '401':
     $ref: '../../components/responses/401.yaml'
