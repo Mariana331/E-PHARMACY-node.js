@@ -152,11 +152,28 @@
                       ],
                       "properties": {
                         "user": {
-                          "$ref": "#/components/schemas/SignInResponse"
+                          "type": "object",
+                          "required": [
+                            "_id",
+                            "email"
+                          ],
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "description": "User id",
+                              "example": "68efd834f1781f960b1e7a6c"
+                            },
+                            "email": {
+                              "type": "string",
+                              "description": "User email",
+                              "example": "john@gmail.com"
+                            }
+                          }
                         },
                         "accessToken": {
                           "type": "string",
-                          "example": "ydRUQDKZCi2Tc0MJUFcOKANMa1MM4xr3XcYlK5V5"
+                          "description": "User accessToken",
+                          "example": "TYEJ0iVVw81X8Bn0hX/nykwWhcYQ1EsjAHR"
                         }
                       }
                     }
@@ -1225,39 +1242,6 @@
             "type": "string",
             "description": "User password",
             "example": "68efd87778"
-          }
-        }
-      },
-      "SignInResponse": {
-        "type": "object",
-        "required": [
-          "user",
-          "accessToken"
-        ],
-        "properties": {
-          "user": {
-            "type": "object",
-            "required": [
-              "_id",
-              "email"
-            ],
-            "properties": {
-              "_id": {
-                "type": "string",
-                "description": "User id",
-                "example": "68efd834f1781f960b1e7a6c"
-              },
-              "email": {
-                "type": "string",
-                "description": "User email",
-                "example": "john@gmail.com"
-              }
-            }
-          },
-          "accessToken": {
-            "type": "string",
-            "description": "User accessToken",
-            "example": "TYEJ0iVVw81X8Bn0hX/nykwWhcYQ1EsjAHR"
           }
         }
       },
