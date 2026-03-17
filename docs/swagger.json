@@ -147,29 +147,9 @@
                     "data": {
                       "type": "object",
                       "required": [
-                        "user",
                         "accessToken"
                       ],
                       "properties": {
-                        "user": {
-                          "type": "object",
-                          "required": [
-                            "_id",
-                            "email"
-                          ],
-                          "properties": {
-                            "_id": {
-                              "type": "string",
-                              "description": "User id",
-                              "example": "68efd834f1781f960b1e7a6c"
-                            },
-                            "email": {
-                              "type": "string",
-                              "description": "User email",
-                              "example": "john@gmail.com"
-                            }
-                          }
-                        },
                         "accessToken": {
                           "type": "string",
                           "description": "User accessToken",
