@@ -21,7 +21,7 @@ export const createShopController = async (req, res) => {
   res.status(201).json({
     status: 201,
     message: 'Successfully created a shop!',
-    data: shop,
+    data: { shop: shop },
   });
 };
 
@@ -36,7 +36,7 @@ export const getShopByIdController = async (req, res, next) => {
   res.status(200).json({
     status: 200,
     message: `Successfully found shop with id ${shopId}!`,
-    data: shop,
+    data: { shop: shop },
   });
 };
 
@@ -50,7 +50,7 @@ export const updateShopController = async (req, res) => {
   res.json({
     status: 200,
     message: 'Shop update successfully!',
-    data: shop,
+    data: { shop: shop },
   });
 };
 
