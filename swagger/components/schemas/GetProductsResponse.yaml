@@ -1,6 +1,6 @@
 type: object
 required:
-  - shopId
+  - _id
   - id
   - photo
   - name
@@ -10,9 +10,9 @@ required:
   - category
 
 properties:
-  shopId:
+  _id:
     type: string
-    description: Shop id
+    description: id
     example: 68efd834f1781f960b1e7a6c
   id:
     type: number

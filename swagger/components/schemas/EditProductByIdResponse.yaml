@@ -1,7 +1,7 @@
 type: object
 required:
+  - _id
   - id
-  - shopId
   - photo
   - name
   - suppliers
@@ -11,11 +11,11 @@ required:
   - createdAt
   - updatedAt
 properties:
+  _id:
+    type: string
+    description: id
+    example: 68efd834f1781f960b1e7a6c
   id:
-    type: number
-    description: Product number
-    example: 12
-  shopId:
     type: number
     description: Product number
     example: 12

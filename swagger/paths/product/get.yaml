@@ -51,7 +51,8 @@ parameters:
     description: Filter by category
     schema:
       type: string
-      example: 'electronics'
+      enum: ['Hand', 'Head', 'Medicine', 'Leg', 'Dental Care', 'Heart']
+      example: 'Hand'
 security:
   - bearerAuth: []
 

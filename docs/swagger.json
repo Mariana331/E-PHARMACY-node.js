@@ -592,7 +592,15 @@
             "description": "Filter by category",
             "schema": {
               "type": "string",
-              "example": "electronics"
+              "enum": [
+                "Hand",
+                "Head",
+                "Medicine",
+                "Leg",
+                "Dental Care",
+                "Heart"
+              ],
+              "example": "Hand"
             }
           }
         ],
@@ -1630,7 +1638,7 @@
       "GetProductsResponse": {
         "type": "object",
         "required": [
-          "shopId",
+          "_id",
           "id",
           "photo",
           "name",
@@ -1640,9 +1648,9 @@
           "category"
         ],
         "properties": {
-          "shopId": {
+          "_id": {
             "type": "string",
-            "description": "Shop id",
+            "description": "id",
             "example": "68efd834f1781f960b1e7a6c"
           },
           "id": {
@@ -1764,7 +1772,7 @@
       "AddProductResponse": {
         "type": "object",
         "required": [
-          "shopId",
+          "_id",
           "id",
           "photo",
           "name",
@@ -1776,7 +1784,7 @@
           "updatedAt"
         ],
         "properties": {
-          "shopId": {
+          "_id": {
             "type": "string",
             "description": "Shop id",
             "example": "68efd834f1781f960b1e7a6c"
@@ -1846,7 +1854,7 @@
       "GetProductByIDResponse": {
         "type": "object",
         "required": [
-          "shopId",
+          "_id",
           "id",
           "photo",
           "name",
@@ -1858,9 +1866,9 @@
           "updatedAt"
         ],
         "properties": {
-          "shopId": {
+          "_id": {
             "type": "string",
-            "description": "Shop id",
+            "description": "id",
             "example": "68efd834f1781f960b1e7a6c"
           },
           "id": {
@@ -2017,8 +2025,8 @@
       "EditProductByIdResponse": {
         "type": "object",
         "required": [
+          "_id",
           "id",
-          "shopId",
           "photo",
           "name",
           "suppliers",
@@ -2029,12 +2037,12 @@
           "updatedAt"
         ],
         "properties": {
-          "id": {
-            "type": "number",
-            "description": "Product number",
-            "example": 12
+          "_id": {
+            "type": "string",
+            "description": "id",
+            "example": "68efd834f1781f960b1e7a6c"
           },
-          "shopId": {
+          "id": {
             "type": "number",
             "description": "Product number",
             "example": 12
