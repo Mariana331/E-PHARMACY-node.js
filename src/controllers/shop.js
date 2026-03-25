@@ -99,7 +99,7 @@ export const createProductController = async (req, res) => {
   res.status(201).json({
     status: 201,
     message: 'Successfully created a product!',
-    data: product,
+    data: { product: product },
   });
 };
 
@@ -112,7 +112,7 @@ export const getProductByIdController = async (req, res, next) => {
   res.status(200).json({
     status: 200,
     message: `Successfully found product with id ${productId}!`,
-    data: product,
+    data: { product: product },
   });
 };
 
@@ -129,7 +129,7 @@ export const editProductController = async (req, res) => {
   res.status(201).json({
     status: 201,
     message: 'Product edited successfully!',
-    data: product,
+    data: { product: product },
   });
 };
 
