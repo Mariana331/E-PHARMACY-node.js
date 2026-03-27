@@ -109,7 +109,7 @@ export const getProductByIdController = async (req, res, next) => {
   if (!result) {
     return next(createHttpError(404, 'Product not found!'));
   }
-  const { product, reviews } = result.product;
+  const { product, reviews } = result;
   res.status(200).json({
     status: 200,
     message: `Successfully found product with id ${productId}!`,
