@@ -55,12 +55,14 @@ export const updateShopController = async (req, res) => {
 };
 
 export const getAllProductsFromShopController = async (req, res) => {
+  const { search } = req.query;
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams(req.query);
   const filter = parseFilterParams(req.query);
   const { shopId } = req.params;
 
   const products = await getAllProductsFromShop({
+    search,
     page,
     perPage,
     sortBy,

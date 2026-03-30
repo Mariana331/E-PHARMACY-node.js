@@ -32,15 +32,22 @@ export const getAllProductsFromShop = async ({
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
-  const productsQuery = ProductsCollection.find();
+  const query = {};
 
   if (filter.category) {
-    productsQuery.where('category').equals(filter.category);
+    query.category = filter.category;
+  }
+
+  if (filter.search) {
+    query.$or = [
+      { name: { $regex: filter.search, $options: 'i' } },
+      { description: { $regex: filter.search, $options: 'i' } },
+    ];
   }
 
   const [productsCount, products] = await Promise.all([
-    ProductsCollection.find().merge(productsQuery).countDocuments(),
-    productsQuery
+    ProductsCollection.countDocuments(query),
+    ProductsCollection.find(query)
       .skip(skip)
       .limit(limit)
       .sort({ [sortBy]: sortOrder })

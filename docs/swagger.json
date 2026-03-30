@@ -543,6 +543,16 @@
           },
           {
             "in": "query",
+            "name": "search",
+            "required": true,
+            "description": "search",
+            "schema": {
+              "type": "string",
+              "example": "68498236a100312bea079030"
+            }
+          },
+          {
+            "in": "query",
             "name": "page",
             "required": false,
             "description": "Page number",
