@@ -544,7 +544,7 @@
           {
             "in": "query",
             "name": "search",
-            "required": true,
+            "required": false,
             "description": "search",
             "schema": {
               "type": "string",
