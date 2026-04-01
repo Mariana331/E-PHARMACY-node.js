@@ -21,7 +21,7 @@ const parseSuppliers = (suppliers) => {
 };
 
 export const parseFilterParams = (query) => {
-  const { category, suppliers } = query;
+  const { category, suppliers, search } = query;
 
   const parsedCategory = parseCategory(category);
   const parsedSuppliers = parseSuppliers(suppliers);
@@ -29,5 +29,6 @@ export const parseFilterParams = (query) => {
   return {
     category: parsedCategory,
     suppliers: parsedSuppliers,
+    search: typeof search === 'string' ? search : undefined,
   };
 };

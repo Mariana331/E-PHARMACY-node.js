@@ -2121,6 +2121,7 @@
           "image",
           "name",
           "email",
+          "spent",
           "phone",
           "address",
           "register_date"
@@ -2145,6 +2146,11 @@
             "type": "string",
             "description": "Customer email",
             "example": "serhii.mykhailenko@gmail.com"
+          },
+          "spent": {
+            "type": "number",
+            "description": "Customer spent",
+            "example": 1230
           },
           "phone": {
             "type": "string",
