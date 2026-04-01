@@ -2148,9 +2148,9 @@
             "example": "serhii.mykhailenko@gmail.com"
           },
           "spent": {
-            "type": "number",
+            "type": "string",
             "description": "Customer spent",
-            "example": 1230
+            "example": "1230"
           },
           "phone": {
             "type": "string",
