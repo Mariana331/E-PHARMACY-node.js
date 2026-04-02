@@ -34,9 +34,11 @@ responses:
               type: object
               required:
                 - user
+                - accessToken
               properties:
                 user:
                   $ref: '../../components/schemas/SignUpResponse.yaml'
+                accessToken:
 
   '400':
     $ref: '../../components/responses/400.yaml'

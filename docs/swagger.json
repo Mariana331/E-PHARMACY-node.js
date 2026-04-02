@@ -79,12 +79,14 @@
                     "data": {
                       "type": "object",
                       "required": [
-                        "user"
+                        "user",
+                        "accessToken"
                       ],
                       "properties": {
                         "user": {
                           "$ref": "#/components/schemas/SignUpResponse"
-                        }
+                        },
+                        "accessToken": null
                       }
                     }
                   }
