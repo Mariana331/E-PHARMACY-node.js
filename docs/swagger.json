@@ -86,7 +86,11 @@
                         "user": {
                           "$ref": "#/components/schemas/SignUpResponse"
                         },
-                        "accessToken": null
+                        "accessToken": {
+                          "type": "string",
+                          "description": "User accessToken",
+                          "example": "TYEJ0iVVw81X8Bn0hX/nykwWhcYQ1EsjAHR"
+                        }
                       }
                     }
                   }
@@ -2191,9 +2195,9 @@
             "example": "Maria Tkachyk"
           },
           "amount": {
-            "type": "number",
-            "description": "Amount number",
-            "example": 99.9
+            "type": "string",
+            "description": "Amount",
+            "example": "200.00"
           },
           "type": {
             "type": "string",

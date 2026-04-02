@@ -14,9 +14,9 @@ properties:
     description: Review name
     example: Maria Tkachyk
   amount:
-    type: number
-    description: Amount number
-    example: 99.90
+    type: string
+    description: Amount
+    example: '200.00'
   type:
     type: string
     enum: ['Income', 'Expense', 'Error']
