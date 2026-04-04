@@ -1724,20 +1724,12 @@
       "AddProductRequest": {
         "type": "object",
         "required": [
-          "id",
           "photo",
           "name",
-          "suppliers",
-          "stock",
           "price",
           "category"
         ],
         "properties": {
-          "id": {
-            "type": "number",
-            "description": "Product number",
-            "example": 12
-          },
           "photo": {
             "type": "string",
             "description": "Product photo",
@@ -1747,23 +1739,6 @@
             "type": "string",
             "description": "Product name",
             "example": "Shampoo"
-          },
-          "suppliers": {
-            "type": "string",
-            "description": "Product supplier",
-            "enum": [
-              "Square",
-              "Beximco",
-              "Uniliver",
-              "ACI",
-              "Acme"
-            ],
-            "example": "Square"
-          },
-          "stock": {
-            "type": "number",
-            "description": "Product stock",
-            "example": 15
           },
           "price": {
             "type": "number",
@@ -1789,11 +1764,8 @@
         "type": "object",
         "required": [
           "_id",
-          "id",
           "photo",
           "name",
-          "suppliers",
-          "stock",
           "price",
           "category",
           "createdAt",
@@ -1805,11 +1777,6 @@
             "description": "Shop id",
             "example": "68efd834f1781f960b1e7a6c"
           },
-          "id": {
-            "type": "number",
-            "description": "Product number",
-            "example": 12
-          },
           "photo": {
             "type": "string",
             "description": "Product photo",
@@ -1819,23 +1786,6 @@
             "type": "string",
             "description": "Product name",
             "example": "Shampoo"
-          },
-          "suppliers": {
-            "type": "string",
-            "description": "Product supplier",
-            "enum": [
-              "Square",
-              "Beximco",
-              "Uniliver",
-              "ACI",
-              "Acme"
-            ],
-            "example": "Square"
-          },
-          "stock": {
-            "type": "number",
-            "description": "Product stock",
-            "example": 15
           },
           "price": {
             "type": "number",
@@ -2042,11 +1992,8 @@
         "type": "object",
         "required": [
           "_id",
-          "id",
           "photo",
           "name",
-          "suppliers",
-          "stock",
           "price",
           "category",
           "createdAt",
@@ -2058,11 +2005,6 @@
             "description": "id",
             "example": "68efd834f1781f960b1e7a6c"
           },
-          "id": {
-            "type": "number",
-            "description": "Product number",
-            "example": 12
-          },
           "photo": {
             "type": "string",
             "description": "Product photo",
@@ -2072,23 +2014,6 @@
             "type": "string",
             "description": "Product name",
             "example": "Shampoo"
-          },
-          "suppliers": {
-            "type": "string",
-            "description": "Product supplier",
-            "enum": [
-              "Square",
-              "Beximco",
-              "Uniliver",
-              "ACI",
-              "Acme"
-            ],
-            "example": "Square"
-          },
-          "stock": {
-            "type": "number",
-            "description": "Product stock",
-            "example": 15
           },
           "price": {
             "type": "number",

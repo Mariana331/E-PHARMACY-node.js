@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 export const productSchema = Joi.object({
-  id: Joi.number().integer().required().messages({
+  id: Joi.number().integer().messages({
     'number.base': 'Id must be a number',
     'any.required': 'Id is required',
   }),
@@ -11,13 +11,12 @@ export const productSchema = Joi.object({
 
   suppliers: Joi.string()
     .valid('Square', 'Beximco', 'Uniliver', 'ACI', 'Acme')
-    .required()
     .messages({
       'any.only': 'Invalid supplier',
       'string.empty': 'Suppliers is required',
     }),
 
-  stock: Joi.number().integer().required().messages({
+  stock: Joi.number().integer().messages({
     'number.base': 'Stock must be a number',
     'any.required': 'Stock is required',
   }),

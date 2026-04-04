@@ -1,18 +1,11 @@
 type: object
 required:
-  - id
   - photo
   - name
-  - suppliers
-  - stock
   - price
   - category
 
 properties:
-  id:
-    type: number
-    description: Product number
-    example: 12
   photo:
     type: string
     description: Product photo
@@ -21,15 +14,6 @@ properties:
     type: string
     description: Product name
     example: Shampoo
-  suppliers:
-    type: string
-    description: Product supplier
-    enum: ['Square', 'Beximco', 'Uniliver', 'ACI', 'Acme']
-    example: Square
-  stock:
-    type: number
-    description: Product stock
-    example: 15
   price:
     type: number
     description: Product price
