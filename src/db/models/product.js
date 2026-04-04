@@ -7,16 +7,8 @@ const productSchema = new Schema(
       ref: 'shop',
       required: true,
     },
-    id: { type: Number, required: true },
     photo: { type: String, required: false },
     name: { type: String, required: true },
-    suppliers: {
-      type: String,
-      enum: ['Square', 'Beximco', 'Uniliver', 'ACI', 'Acme'],
-      default: 'ACI',
-      required: true,
-    },
-    stock: { type: Number, required: true },
     price: { type: Number, required: true },
     category: {
       type: String,
