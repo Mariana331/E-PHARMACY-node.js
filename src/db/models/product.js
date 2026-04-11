@@ -7,7 +7,7 @@ const productSchema = new Schema(
       ref: 'shop',
       required: true,
     },
-    photo: { type: String, required: false },
+    photo: { type: String, required: true },
     name: { type: String, required: true },
     price: { type: Number, required: true },
     category: {

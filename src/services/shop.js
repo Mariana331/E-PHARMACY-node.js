@@ -24,7 +24,7 @@ export const updateShop = async (shopId, payload) => {
 
 export const getAllProductsFromShop = async ({
   page = 1,
-  perPage = 10,
+  perPage = 8,
   sortOrder = SORT_ORDER.ASC,
   sortBy = '_id',
   filter = {},
