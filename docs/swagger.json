@@ -574,7 +574,7 @@
             "description": "Items per page",
             "schema": {
               "type": "integer",
-              "example": 10
+              "example": 8
             }
           },
           {
@@ -666,11 +666,11 @@
                         },
                         "page": {
                           "type": "number",
-                          "example": 2
+                          "example": 1
                         },
                         "perPage": {
                           "type": "number",
-                          "example": 4
+                          "example": 8
                         },
                         "totalItems": {
                           "type": "number",

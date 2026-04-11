@@ -8,7 +8,11 @@ export const productSchema = Joi.object({
   name: Joi.string().min(3).max(20).required().messages({
     'string.empty': 'Name is required',
   }),
-
+  photo: Joi.string().uri().required().messages({
+    'string.uri': 'Photo must be a valid URL',
+    'string.empty': 'Photo is required',
+    'any.required': 'Photo is required',
+  }),
   suppliers: Joi.string()
     .valid('Square', 'Beximco', 'Uniliver', 'ACI', 'Acme')
     .messages({
