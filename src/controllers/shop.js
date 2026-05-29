@@ -58,7 +58,6 @@ export const getAllProductsFromShopController = async (req, res) => {
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams(req.query);
   const filter = parseFilterParams(req.query);
-  const { shopId } = req.params;
 
   const products = await getAllProductsFromShop({
     page,
@@ -66,7 +65,6 @@ export const getAllProductsFromShopController = async (req, res) => {
     sortBy,
     sortOrder,
     filter,
-    shopId,
   });
 
   res.status(200).json({

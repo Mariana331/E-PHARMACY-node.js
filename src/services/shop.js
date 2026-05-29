@@ -23,7 +23,6 @@ export const updateShop = async (shopId, payload) => {
 };
 
 export const getAllProductsFromShop = async ({
-  shopId,
   page = 1,
   perPage = 8,
   sortOrder = SORT_ORDER.ASC,
@@ -33,7 +32,7 @@ export const getAllProductsFromShop = async ({
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
-  const query = { shopId };
+  const query = {};
 
   if (filter.category) {
     query.category = filter.category;
