@@ -9,7 +9,7 @@ info:
   description: This is a documentation of E-PHARMACY
 
 servers:
-  - url: http://localhost:3001
+  - url: http://localhost:3000
 
   - url: https://e-pharmacy-node-js.onrender.com
 

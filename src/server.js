@@ -11,6 +11,9 @@ import cookieParser from 'cookie-parser';
 import swaggerUI from 'swagger-ui-express';
 import * as fs from 'node:fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const SWAGGER_DOCUMENT = JSON.parse(
   fs.readFileSync(path.join('docs', 'swagger.json')),
@@ -27,6 +30,7 @@ export const startServer = () => {
 
   app.use(pino({ transport: { target: 'pino-pretty' } }));
   app.use(cors());
+  app.use('/uploads', express.static(path.join(__dirname, 'tmp')));
 
   app.use('/api/user', authRouters);
   app.use('/api/shop', shopRouters);
