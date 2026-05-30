@@ -117,18 +117,25 @@ export const getProductByIdController = async (req, res, next) => {
 
 export const editProductController = async (req, res) => {
   const { productId } = req.params;
-  const product = await editProduct(productId, req.body);
-  if (product.updatedExisting === true) {
-    return res.json({
-      status: 200,
-      message: 'Product edited successfully!',
-      data: product,
-    });
+
+  const avatar = req.file;
+
+  const payload = { ...req.body };
+
+  if (avatar) {
+    if (getEnvVar('ENABLE_CLOUDINARY') === 'true') {
+      payload.photo = await saveFileToCloudinary(avatar);
+    } else {
+      payload.photo = `/uploads/${avatar.filename}`;
+    }
   }
-  res.status(201).json({
-    status: 201,
+
+  const product = await editProduct(productId, payload);
+
+  res.status(200).json({
+    status: 200,
     message: 'Product edited successfully!',
-    data: { product: product },
+    data: { product },
   });
 };
 
